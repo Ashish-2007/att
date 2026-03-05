@@ -1,0 +1,91 @@
+package week10;
+
+		package gmaillll;
+		import org.openqa.selenium.*;
+		import org.openqa.selenium.chrome.ChromeDriver;
+		import org.openqa.selenium.support.ui.*;
+		import java.time.Duration;
+
+		public class Week10{
+
+		    public static void main(String[] args))throws InterruptedException {
+
+		        System.setProperty("webdriver.chrome.driver"," D:\\25R05A6711\\chromedriver-win64\\chromedriver.exe");
+		        WebDriver driver = new ChromeDriver();
+		        driver.manage().window().maximize();
+
+		        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(20));
+		        JavascriptExecutor js = (JavascriptExecutor) driver;
+
+		        driver.get("https://accounts.google.com/signup");
+
+		        // ---------- NAME PAGE ----------
+		        wait.until(ExpectedConditions.elementToBeClickable(By.name("firstName")))
+		                .sendKeys("Gunti");
+
+		        driver.findElement(By.name("lastName")).sendKeys.("Shiva");
+		        driver.findElement(By.xpath("//span[text()='Next']")).click();
+
+		        // ---------- DOB PAGE (PROBLEM AREA FIXED) ----------
+
+		        // Wait until month dropdown is clickable
+		        WebElement month = wait.until(
+		                ExpectedConditions.elementToBeClickable(By.id("month"))
+		        );
+
+		        // Use JavaScript to select month
+		        js.executeScript(
+		                "arguments[0].value='8'; arguments[0].dispatchEvent(new Event('change'));",
+		                month
+		        );
+
+		        // Day
+		        WebElement day =wait.until(
+		                ExpectedConditions.elementToBeClickable(By.id("day"))
+		        );
+		        day.clear();
+		        day.sendKeys("24");
+
+		        // Year
+		        WebElement year = wait.until(
+		                ExpectedConditions.elementToBeClickable(By.id("year"))
+		        );
+		        year.clear();
+		        year.sendKeys("1996");
+
+		        // Gender (JavaScript required)
+		        WebElement gender = wait.until(
+		                ExpectedConditions.elementToBeClickable(By.id("gender"))
+		        );
+		        js.executeScript(
+		                "arguments[0].value='1'; arguments[0].dispatchEvent(new Event('change'));",
+		                gender
+		                
+		       );
+
+		        // Next
+		        wait.until(ExpectedConditions.elementToBeClickable(
+		                By.xpath("//span[text()='Next']"))).click();
+
+		        // ---------- USERNAME ----------
+		        wait.until(ExpectedConditions.elementToBeClickable(By.name("Username")))
+		                .sendKeys("G shiva");
+
+		        driver.findElement(By.xpath("//span[text()='Next']")).click();
+
+		        // ---------- PASSWORD ----------
+		        wait.until(ExpectedConditions.elementToBeClickable(By.name("Passwd")))
+		                .sendKeys("Shiva@007");
+
+		        driver.findElement(By.name("PasswdAgain"))
+		                .sendKeys("Shiva@007");
+
+		        driver.findElement(By.xpath("//span[text()='Next']")).click();
+		    }
+		}
+
+		// TODO Auto-generated method stub
+
+	}
+
+}
