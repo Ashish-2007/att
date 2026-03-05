@@ -1,0 +1,23 @@
+import org.openqa.selenium.By;
+import org.openqa.selenium.WebDriver;
+
+public class Week7 {
+
+	public static void main(String[] args)  throws InterruptedException {
+		// TODO Auto-generated method stub
+		System.setproperty("webdriver.chromedriver"," D:\\25R05A6711\\chromedriver-win64\\chromedriver.exe");
+		WebDriver driver=new ChromerDriver();
+		driver.manage().window().maximize();
+		driver.get("https://www.google.com/");
+		Thread.sleep(2000);
+		WebElement searchBar= driver.findElement(By.name("q"));
+		searchBar.sendKeys("cmrithyderabad");
+		searchBar.sendKeys(Keys.ENTER);
+		Thread.sleep(3000);
+		driver.quit();
+
+	}
+
+}
+
+
